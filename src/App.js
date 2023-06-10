@@ -98,7 +98,7 @@ function App() {
 
   const handleDealt = (arrayIndex, cardIndex) => {
     const copyDealtCard = [...dealtCards];
-    console.log(arrayIndex, cardIndex, "clicked");
+
     copyDealtCard[arrayIndex][cardIndex].selected = true;
 
     for (let i = 0; i < copyDealtCard.length; i++) {
@@ -111,20 +111,15 @@ function App() {
 
     if (selectedCards) {
       if (selectedCards.handleDeck) {
-        console.log("here handle deck");
         const firstdeckCard = decks[selectedCards.count];
 
         const seconddeckCard = copyDealtCard[arrayIndex][cardIndex];
-
-        console.log(firstdeckCard, "first", seconddeckCard, "second");
 
         if (
           seconddeckCard.valueList === firstdeckCard.valueList + 1 &&
           (firstdeckCard.suits === "♥" || firstdeckCard.suits === "♦") &&
           (seconddeckCard.suits === "♠" || seconddeckCard.suits === "♣")
         ) {
-          console.log("hey suits are different");
-
           const deckCard = decks.splice(selectedCards.count, 1)[0];
 
           const copiedDeckCard = { ...deckCard };
@@ -143,8 +138,6 @@ function App() {
           (firstdeckCard.suits === "♠" || firstdeckCard.suits === "♣") &&
           (seconddeckCard.suits === "♥" || seconddeckCard.suits === "♦")
         ) {
-          console.log("hey 2 suits are different");
-
           const deckCards = decks.splice(selectedCards.count, 1)[0];
 
           const copiedDecktwoCard = { ...deckCards };
@@ -156,16 +149,13 @@ function App() {
           return setDealtCards(copyDealtCard);
         }
       }
-
       //HANDLE DEALT LOGIC
 
       if (selectedCards.handleDealt) {
         const firstCard =
           copyDealtCard[selectedCards.arrayIndex][selectedCards.cardIndex];
-        console.log(firstCard, "first card");
 
         const secondCard = copyDealtCard[arrayIndex][cardIndex];
-        console.log(secondCard, "second card");
 
         if (
           (secondCard.valueList === firstCard.valueList + 1 &&
@@ -259,7 +249,6 @@ function App() {
 
   const handleAce = (suit) => {
     // suit will either be heart, diamond, club or spade
-    console.log(aces[suit], "which suit", suit, { selectedCards });
 
     const copyDealtCard = [...dealtCards];
     const copyDeck = [...decks];
@@ -276,8 +265,6 @@ function App() {
             1
           )[0];
 
-          console.log(ace, "acessss");
-
           //flipping last card in the array, once card moved
 
           setSelectedCards(null);
@@ -292,11 +279,9 @@ function App() {
 
         if (aces[suit].length > 0) {
           const lastAce = aces[suit].slice(-1)[0];
-          console.log(lastAce, "lastAce");
 
           const secondCard =
             copyDealtCard[selectedCards.arrayIndex][selectedCards.cardIndex];
-          console.log(secondCard, "second card");
 
           if (
             secondCard.valueList === lastAce.valueList + 1 &&
@@ -319,7 +304,6 @@ function App() {
           }
         }
       } else if (selectedCards.handleDeck) {
-        console.log(copyDeck.at(selectedCards.count), "syntax");
         if (
           aces[suit].length === 0 &&
           copyDeck.at(selectedCards.count).ranks === "A"
@@ -346,7 +330,6 @@ function App() {
             const yellowCardsCopy = [...aces[suit]];
             yellowCardsCopy.push(ace);
 
-            console.log(yellowCardsCopy, "copy yellow cards");
             setAces((prev) => {
               return { ...prev, [suit]: [ace] };
             });
