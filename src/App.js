@@ -78,15 +78,6 @@ function App() {
     club: [],
   });
 
-  /* 
-  useEffect: 
-    When you want to create a side affect before your component mounts
-    When something updates you want the effect to run again i.e when you delete a user from a table
-    When you want to unmount your component (stop what it's doing/about to do)
-  */
-
-  // when ... included, it removes the { } so that a new object is changed in an array
-
   useEffect(() => {
     setDecks(() => {
       return deck.map((card) => {
@@ -225,9 +216,6 @@ function App() {
     setDealtCards(copyDealtCard);
   };
 
-  //
-  //
-
   //placing a king on empty array
   const handleKing = (arrayIndex) => {
     const copyDealtCard = [...dealtCards];
@@ -291,7 +279,6 @@ function App() {
           console.log(ace, "acessss");
 
           //flipping last card in the array, once card moved
-          //
 
           setSelectedCards(null);
           setAces((prev) => {
@@ -457,8 +444,3 @@ function App() {
   );
 }
 export default App;
-
-// arrays have built in methods we can use from JS
-
-// map, forEach, splice, push, length
-// array.map(item => item)
